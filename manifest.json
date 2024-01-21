@@ -1,14 +1,15 @@
 {
     "name": "Sean_Modpack",
-    "version_number": "0.1.0",
-    "website_url": "",
+    "version_number": "0.1.1",
+    "website_url": "https://github.com/seanj29/Sean_Modpack",
     "description": "ModPack I made for me and my friends, contains mostly utility mods with some that change some additional gameplay functionality.",
     "dependencies": [
         "BepInEx-BepInExPack-5.4.2100",
         "2018-LC_API-3.3.2",
+        "HomelessGinger-MaskedEnemyOverhaul-3.1.1",
         "FlipMods-ReservedItemSlotCore-1.8.10",
         "TwinDimensionalProductions-CoilHeadStare-1.0.3",
-        "OE_Tweaks-Possessed_Masks-1.1.2",
+        "RugbugRedfern-Skinwalkers-4.0.1",
         "bizzlemip-BiggerLobby-2.6.0",
         "RickArg-Helmet_Cameras-2.1.5",
         "Hamunii-JetpacksCarryBigItems-1.0.1",
