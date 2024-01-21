@@ -1,0 +1,23 @@
+{
+    "name": "Sean_Modpack",
+    "version_number": "0.1.0",
+    "website_url": "",
+    "description": "ModPack I made for me and my friends, contains mostly utility mods with some that change some additional gameplay functionality.",
+    "dependencies": [
+        "BepInEx-BepInExPack-5.4.2100",
+        "2018-LC_API-3.3.2",
+        "FlipMods-ReservedItemSlotCore-1.8.10",
+        "TwinDimensionalProductions-CoilHeadStare-1.0.3",
+        "OE_Tweaks-Possessed_Masks-1.1.2",
+        "bizzlemip-BiggerLobby-2.6.0",
+        "RickArg-Helmet_Cameras-2.1.5",
+        "Hamunii-JetpacksCarryBigItems-1.0.1",
+        "iwotastic-IwotasticsCompassMod-1.2.0",
+        "Vulf-GokuBracken-1.4.3",
+        "EliteMasterEric-Coroner-1.5.3",
+        "sunnobunno-YippeeMod-1.2.3",
+        "FlipMods-ReservedFlashlightSlot-1.5.10",
+        "FlipMods-ReservedWalkieSlot-1.5.5",
+        "x753-Mimics-2.3.2"
+    ]
+}
