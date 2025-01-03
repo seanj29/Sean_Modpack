@@ -25,22 +25,21 @@ jobs:
         zip -r release.zip . -x "*.git*"
 
     - name: Create Release
-      uses: actions/create-release@v1
+      uses: elgohr/Github-Release-Action@v5
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.sha }}  # Use the commit SHA as the tag
+        title: ${{ github.sha }}  # Use the commit SHA as the tag
+        tag: ${{ github.sha }}
         release_name: "Release ${{ github.sha }}"
         body: "Automated release for commit ${{ github.sha }}"
         draft: false
         prerelease: false
 
     - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
+      uses: softprops/action-gh-release@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      if: startsWith(github.ref, 'refs/tags/')
       with:
-        upload_url: ${{ steps.create-release.outputs.upload_url }}
-        asset_path: ./release.zip
-        asset_name: release.zip
-        asset_content_type: application/zip
+        files: release.zip
