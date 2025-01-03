@@ -1,0 +1,46 @@
+# This is a basic workflow to help you get started with Actions
+name: Create Release on Push
+
+on:
+
+  push:
+      
+  workflow_dispatch:
+   inputs:
+      draft-release:
+        type: boolean
+        default: true
+        description: Whether to publish the release as a draft.
+  
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Zip Project Files
+      run: |
+        zip -r release.zip . -x "*.git*"
+
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.sha }}  # Use the commit SHA as the tag
+        release_name: "Release ${{ github.sha }}"
+        body: "Automated release for commit ${{ github.sha }}"
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-release.outputs.upload_url }}
+        asset_path: ./release.zip
+        asset_name: release.zip
+        asset_content_type: application/zip
