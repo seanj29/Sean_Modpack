@@ -11,6 +11,10 @@ on:
         type: boolean
         default: true
         description: Whether to publish the release as a draft.
+
+permissions:
+  packages: write
+  contents: write
   
 jobs:
   release:
@@ -29,12 +33,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        title: ${{ github.sha }}  # Use the commit SHA as the tag
+        title: "Release${{ github.sha }}"  # Use the commit SHA as the tag
         tag: ${{ github.sha }}
-        release_name: "Release ${{ github.sha }}"
-        body: "Automated release for commit ${{ github.sha }}"
-        draft: false
-        prerelease: false
 
     - name: Upload Release Asset
       uses: softprops/action-gh-release@v2
