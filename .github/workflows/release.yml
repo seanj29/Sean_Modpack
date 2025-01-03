@@ -2,8 +2,9 @@
 name: Create Release on Push
 
 on:
-
   push:
+    tags:
+      - 'v*' # Triggers only for tags following the "v*" pattern.
       
   workflow_dispatch:
    inputs:
@@ -30,19 +31,15 @@ jobs:
 
     - name: Create Release
       id: create_release
-      uses: elgohr/Github-Release-Action@v5
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: "marvinpinto/action-automatic-releases@latest"
       with:
-        title: "Release${{ github.sha }}"  # Use the commit SHA as the tag
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        title: "Release ${{ github.ref_name }}"  # Use the commit SHA as the tag
+        automatic_release_tag: "latest"
+        prerelease: false
+        files: |
+          release.zip
 
-    - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      if: startsWith(github.ref, 'refs/tags/')
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./release.zip
-        asset_name: release.zip
-        asset_content_type: application/zip
+
+   
+    
