@@ -26,7 +26,7 @@ jobs:
 
     - name: Zip Project Files
       run: |
-        zip -r release.zip . -x "*.git*"
+        zip -r release.zip . -x "*.git*" ".github/*"
 
     - name: Create Release
       uses: elgohr/Github-Release-Action@v5
@@ -37,8 +37,8 @@ jobs:
 
     - name: Upload Release Asset
       uses: softprops/action-gh-release@v2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # env:
+      #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: release.zip
