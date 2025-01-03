@@ -3,8 +3,6 @@ name: Create Release on Push
 
 on:
   push:
-    tags:
-      - 'v*' # Triggers only for tags following the "v*" pattern.
       
   workflow_dispatch:
    inputs:
